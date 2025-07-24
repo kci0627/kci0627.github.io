@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物網站</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">購物商城</div>
+            <ul class="nav-links">
+                <li><a href="#">首頁</a></li>
+                <li><a href="#">商品分類</a></li>
+                <li><a href="#">特價商品</a></li>
+                <li><a href="#">關於我們</a></li>
+            </ul>
+            <div class="cart">
+                <a href="#" class="cart-icon" id="cartIcon">🛒 購物車 (<span id="cartCount">0</span>)</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 購物車彈出視窗 -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <h2>購物車</h2>
+            <div class="cart-items" id="cartItems">
+                <!-- 購物車商品將在這裡動態添加 -->
+            </div>
+            <div class="cart-summary">
+                <div class="total">總計: NT$ <span id="cartTotal">0</span></div>
+                <button class="checkout-btn" id="checkoutBtn">結帳</button>
+            </div>
+            <button class="close-cart" id="closeCart">關閉</button>
+        </div>
+    </div>
+
+    <!-- 結帳表單彈出視窗 -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <h2>結帳資訊</h2>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">電子郵件</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">電話</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">送貨地址</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="payment">付款方式</label>
+                    <select id="payment" name="payment" required>
+                        <option value="">請選擇付款方式</option>
+                        <option value="credit_card">信用卡</option>
+                        <option value="bank_transfer">銀行轉帳</option>
+                        <option value="convenience_store">超商付款</option>
+                    </select>
+                </div>
+
+                <!-- 信用卡表單 -->
+                <div id="creditCardForm" class="credit-card-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="cardNumber">信用卡號碼</label>
+                        <input type="text" id="cardNumber" name="cardNumber" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="expiryDate">有效期限</label>
+                            <input type="text" id="expiryDate" name="expiryDate" maxlength="5" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="cvv">安全碼</label>
+                            <input type="text" id="cvv" name="cvv" maxlength="3" placeholder="CVV">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardHolder">持卡人姓名</label>
+                        <input type="text" id="cardHolder" name="cardHolder" placeholder="與卡片上的姓名相同">
+                    </div>
+                </div>
+
+                <div class="checkout-buttons">
+                    <button type="submit" class="submit-btn">確認訂單</button>
+                    <button type="button" class="cancel-btn" id="cancelCheckout">取消</button>
+                </div>
+            </form>
+            <div id="orderSummary" class="order-summary">
+                <h3>訂單摘要</h3>
+                <div id="orderItems"></div>
+                <div class="order-total">總計: NT$ <span id="orderTotal">0</span></div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <h1>歡迎來到購物商城</h1>
+            <p>發現最優質的商品，享受最佳的購物體驗</p>
+        </section>
+
+        <section class="products">
+            <h2>熱門商品</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/200" alt="商品1">
+                    <h3>商品名稱1</h3>
+                    <p class="price">NT$ 299</p>
+                    <button class="add-to-cart">加入購物車</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/200" alt="商品2">
+                    <h3>商品名稱2</h3>
+                    <p class="price">NT$ 399</p>
+                    <button class="add-to-cart">加入購物車</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/200" alt="商品3">
+                    <h3>商品名稱3</h3>
+                    <p class="price">NT$ 499</p>
+                    <button class="add-to-cart">加入購物車</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>聯絡我們</h4>
+                <p>Email: contact@shop.com</p>
+                <p>電話: (02) 1234-5678</p>
+            </div>
+            <div class="footer-section">
+                <h4>購物說明</h4>
+                <ul>
+                    <li><a href="#">運送方式</a></li>
+                    <li><a href="#">退換貨政策</a></li>
+                    <li><a href="#">付款方式</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 購物商城 版權所有</p>
+        </div>
+    </footer>
+    <script src="cart.js"></script>
+</body>
+</html>
